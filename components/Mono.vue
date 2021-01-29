@@ -20,7 +20,7 @@ export default {
 		embed: {
 			type: Boolean,
 			required: false
-		}, 
+		}
 	},
 	data() {
 		return {
