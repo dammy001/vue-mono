@@ -1,8 +1,8 @@
 # vue-mono
 
-# Mono Component for Vue 2.x
+# Mono Component for Vue 3.x
 
-A Vue Plugin for mono integration.
+A Vue 3 package for mono integration.
 
 ### Install
 
@@ -12,65 +12,90 @@ A Vue Plugin for mono integration.
 npm i @damilaredev/vue-mono --save
 ```
 
+#### YARN
+
+```
+yarn add @damilaredev/vue-mono
+```
+
+#### PNPM
+
+```
+pnpm add @damilaredev/vue-mono
+```
+
 ### Usage
 
 ```
-import Vue from 'vue';
+import { createApp } from 'vue';
+import App from './App.vue'
 import VueMono from '@damilaredev/vue-mono';
 
-Vue.use(VueMono);
+const app = createApp(App)
+
+app.use(VueMono)
+
+app.mount('#app')
 ```
 
-#### Via NPM
-
-###### vue-mono.vue sample
+###### example
 
 ```vue
 <template>
- <vue-mono
-  :callback="callback"
-  :publicKey="publicKey"
-  @success="success"
-  :embed="false"
- >
+ <vue-mono :publicKey="publicKey" @success="success">
   <button class="px-3 py-2 rounded text-center bg-blue-300 text-white">
-   Verify With Mono
+   Connect With Mono
   </button>
  </vue-mono>
 </template>
 
-<script type="text/javascript">
- export default {
-  data() {
-   return {
-    publicKey: 'xxxxxxxxxxxxxxxxxxxxxxx', //mono public key
-   };
+<script lang="ts">
+ import { ref, Ref } from 'vue';
+ export default defineComponent({
+  setup: () => {
+   const publicKey: Ref<string> = ref<string>('xxxxxxxxxxxxxxxxxxxxxxx');
+
+   const success = (response: string): void => console.log(response);
+
+   return { publicKey, success };
   },
-  methods: {
-   callback: function (response) {
-    console.log(response);
-   },
-   success: function (response) {
-    console.log(response);
-   },
-  },
- };
+ });
 </script>
 ```
 
-## Contributing
+```vue
+<template>
+ <mono-component :publicKey="publicKey" @success="success" />
+ <button
+  class="px-3 py-2 rounded text-center bg-blue-300 text-white"
+  @click="connect"
+ >
+  Connect With Mono
+ </button>
+</template>
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b feature-name`
-3. Commit your changes: `git commit -am 'Some commit message'`
-4. Push to the branch: `git push origin feature-name`
-5. Submit a pull request 😉😉
+###### or referencing the component instance data
+<script lang="ts">
+ import { ref, unref, ComponentPublicInstance, Ref } from 'vue';
+ import { MonoComponent, MonoPropType } from '@damilaredev/vue-mono';
+ export default defineComponent({
+  setup: () => {
+   const publicKey: Ref<string> = ref<string>('xxxxxxxxxxxxxxxxxxxxxxx');
 
-## How can I thank you?
+   const monoRef =
+    ref<ComponentPublicInstance<Record<string, unknown>, MonoPropType> | null>(
+     null,
+    );
 
-Why not star the github repo? I'd love the attention! Why not share the link for this repository on Twitter or Any Social Media? Spread the word!
+   const connect = (): void => unref(monoRef)!.connectWithMono();
 
-Don't forget to [follow me on twitter](https://twitter.com/laravel00)!
+   const success = (response: string): void => console.log(response);
+
+   return { publicKey, success, connect };
+  },
+ });
+</script>
+```
 
 Thanks!
 Damilare.
