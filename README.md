@@ -63,6 +63,8 @@ app.mount('#app')
 </script>
 ```
 
+###### or referencing the component instance data
+
 ```vue
 <template>
  <mono-component :publicKey="publicKey" @success="success" />
@@ -73,8 +75,6 @@ app.mount('#app')
   Connect With Mono
  </button>
 </template>
-
-###### or referencing the component instance data
 <script lang="ts">
  import { ref, unref, ComponentPublicInstance, Ref } from 'vue';
  import { MonoComponent, MonoPropType } from '@damilaredev/vue-mono';
@@ -96,10 +96,3 @@ app.mount('#app')
  });
 </script>
 ```
-
-Thanks!
-Damilare.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
