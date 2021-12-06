@@ -3,6 +3,7 @@
   "version": "0.5.2",
   "description": "Vuejs package for mono integration",
   "main": "dist/index.js",
+  "module": "index.ts",
   "private": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
