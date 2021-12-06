@@ -1,6 +1,6 @@
 {
   "name": "@damilaredev/vue-mono",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Vuejs package for mono integration",
   "main": "dist/index.js",
   "module": "index.ts",
