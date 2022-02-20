@@ -1,15 +1,12 @@
-import { App, defineAsyncComponent } from 'vue';
-import MonoComponent from './components/Mono';
+import { App } from 'vue';
+import Mono from './components/Mono';
 
-export * from './types';
+export type { MonoConfig } from './types';
 
-export { MonoComponent };
+export { Mono };
 
 export default {
  install: (app: App, _options = {}): void => {
-  app.component(
-   'vue-mono',
-   defineAsyncComponent(() => import('./components/Mono.vue')),
-  );
+  app.component('vue-mono', Mono);
  },
 };
