@@ -7,4 +7,5 @@ export default defineBuildConfig({
   { input: 'components/', outDir: 'dist/components' },
  ],
  declaration: true,
+ dependencies: ['vue'],
 });

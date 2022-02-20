@@ -1,5 +1,5 @@
 import { App } from 'vue';
-import Mono from './components/Mono';
+import Mono from './components/Mono.vue';
 
 export type { MonoConfig } from './types';
 
