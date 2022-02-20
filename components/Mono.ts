@@ -6,7 +6,7 @@ import {
  unref,
  onBeforeMount,
 } from 'vue';
-import { MonoPropType } from '../types';
+import type { MonoConfig } from '../types';
 
 const Mono = defineComponent({
  inheritAttrs: false,
@@ -33,8 +33,8 @@ const Mono = defineComponent({
               </button>
             </slot>
           </template>
-        `,
- setup: (props: MonoPropType, { emit }: SetupContext) => {
+  `,
+ setup: (props: MonoConfig, { emit }: SetupContext) => {
   const { publicKey, embed } = toRefs(props);
 
   const loadScript = (callback: () => void): void => {
@@ -56,15 +56,10 @@ const Mono = defineComponent({
    }
   };
 
-  onMounted(() => {
-   unref(embed) && connectWithMono();
-  });
+  onMounted(() => unref(embed) && connectWithMono());
 
   onBeforeMount(
-   () =>
-    new Promise((resolve: any) => {
-     loadScript(() => resolve());
-    }),
+   () => new Promise((resolve: any) => loadScript(() => resolve())),
   );
 
   const connectWithMono = (): void => {
@@ -77,7 +72,7 @@ const Mono = defineComponent({
     },
    };
 
-   const connect = (window as any).Connect(unref(publicKey), options);
+   const connect = (window as any).Connect(unref(publicKey), { ...options });
    connect.setup();
 
    return connect.open();

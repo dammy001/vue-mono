@@ -6,21 +6,14 @@ A Vue 3 package for mono integration.
 
 ### Install
 
-#### NPM
-
 ```
+// with npm
 npm i @damilaredev/vue-mono --save
-```
 
-#### YARN
-
-```
+//with yarn
 yarn add @damilaredev/vue-mono
-```
 
-#### PNPM
-
-```
+//with pnpm
 pnpm add @damilaredev/vue-mono
 ```
 
