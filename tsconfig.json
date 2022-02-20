@@ -1,8 +1,9 @@
 {
   "extends": "@damilaredev/tsconfig/tsconfig.node.json",
   "compilerOptions": {
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "module": "esnext"
   },
-  "exclude": ["node_modules", "dist"],
-  "include": ["./components/**/*"]
+  "exclude": ["node_modules", "dist", "examples"],
+  "include": ["./components/**/*", "vite.config.ts"]
 }
